@@ -1,41 +1,30 @@
 <?php
-$fedoracore = array();
-$fedoracore['name'] = "FedoraCore";
-$fedoracore['url'] = "http://core.fedoracoin.net/";
-$fedoracore['fee'] = 1;
-$fedoracore['verified'] = true;
-$fedoracore['type'] = "Proportional";
-$fedoracore['owner'] = "tipsfedora/invisibel";
-
-$pcfil = array();
-$pcfil['name'] = "PCFiL";
-$pcfil['url'] = "http://fedora.pcfil.com/";
-$pcfil['fee'] = 1;
-$pcfil['verified'] = true;
-$pcfil['type'] = "Proportional";
-$pcfil['owner'] = "PCFiL";
-
-$strips = array();
-$strips['name'] = "ChickenStrips.net";
-$strips['url'] = "http://chickenstrips.net/";
-$strips['fee'] = 0.5;
-$strips['verified'] = true;
-$strips['type'] = "Proportional";
-$strips['owner'] = "chisefu";
-
-$suchpool = array();
-$suchpool['name'] = "SuchPool.pw";
-$suchpool['url'] = "http://tips.suchpool.pw/";
-$suchpool['fee'] = 1;
-$suchpool['verified'] = false;
-$suchpool['type'] = "Proportional and VARDIFF";
-$suchpool['owner'] = "CryptoSiD";
+class Pool{
+	public $name;
+	public $url;
+	public $fee;
+	public $verified;
+	public $type;
+	public $owner;
+	public $software;
+	
+	public function __construct($name, $url, $fee, $verified, $type, $owner, $software){
+		$this->name = $name;
+		$this->url = $url;
+		$this->fee = $fee;
+		$this->verified = $verified;
+		$this->type = $type;
+		$this->owner = $owner;
+		$this->software = $software;
+	}
+}
 
 $pools = array();
-$pools[] = $fedoracore;
-$pools[] = $pcfil;
-$pools[] = $strips;
-$pools[] = $suchpool;
+
+$pools[] = new Pool("FedoraCore", "http://core.fedoracoin.net/", 1, true, "Proportional", "tipsfedora/invisibel", "mpos");
+$pools[] = new Pool("PCFiL", "http://fedora.pcfil.com/", 1, true, "Proportional", "PCFiL", "mpos");
+$pools[] = new Pool("ChickenStrips.net", "http://chickenstrips.net/", 0.5, true, "Proportional", "chisefu", "mpos");
+$pools[] = new Pool("SuchPool.pw", "http://tips.suchpool.pw/", 1, false, "Proportional and VARDIFF", "CryptoSiD", "mpos");
 
 shuffle($pools);
 header('Content-Type: application/json');
