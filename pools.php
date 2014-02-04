@@ -1,59 +1,33 @@
 <?php
-$fedoracore = array();
-$fedoracore['name'] = "FedoraCore";
-$fedoracore['url'] = "http://core.fedoracoin.net/";
-$fedoracore['fee'] = 1;
-$fedoracore['verified'] = true;
-$fedoracore['type'] = "Proportional";
-$fedoracore['owner'] = "tipsfedora/invisibel (TIPS developer)";
+class Pool
+{
+	public $name;
+	public $url;
+	public $fee;
+	public $verified;
+	public $type;
+	public $owner;
+	public $software;
 
-$pcfil = array();
-$pcfil['name'] = "PCFiL";
-$pcfil['url'] = "http://fedora.pcfil.com/";
-$pcfil['fee'] = 1;
-$pcfil['verified'] = true;
-$pcfil['type'] = "Proportional";
-$pcfil['owner'] = "PCFiL";
-
-$strips = array();
-$strips['name'] = "ChickenStrips.net";
-$strips['url'] = "http://chickenstrips.net/";
-$strips['fee'] = 0.5;
-$strips['verified'] = true;
-$strips['type'] = "Proportional";
-$strips['owner'] = "chisefu";
-
-$suchpool = array();
-$suchpool['name'] = "SuchPool.pw";
-$suchpool['url'] = "http://tips.suchpool.pw/";
-$suchpool['fee'] = 1;
-$suchpool['verified'] = false;
-$suchpool['type'] = "Proportional and VARDIFF";
-$suchpool['owner'] = "CryptoSiD and eth2";
-
-$coinpool = array();
-$coinpool['name'] = "Coin-Pool.org";
-$coinpool['url'] = "http://fedora.coin-pool.org/";
-$coinpool['fee'] = 1;
-$coinpool['verified'] = true;
-$coinpool['type'] = "Proportional and VARDIFF";
-$coinpool['owner'] = "speed-";
-
-$dedicated = array();
-$dedicated['name'] = "DedicatedPool.com";
-$dedicated['url'] = "http://tips.dedicatedpool.com/";
-$dedicated['fee'] = 2;
-$dedicated['verified'] = false;
-$dedicated['type'] = "Proportional?";
-$dedicated['owner'] = "binaryclock at #dedicatedpool on freenode";
+	public function __construct($name, $url, $fee, $verified, $type, $owner, $software)
+	{
+		$this->name = $name;
+		$this->url = $url;
+		$this->fee = $fee;
+		$this->verified = $verified;
+		$this->type = $type;
+		$this->owner = $owner;
+		$this->software = $software;
+	}
+}
 
 $pools = array();
-$pools[] = $fedoracore;
-$pools[] = $pcfil;
-$pools[] = $strips;
-$pools[] = $suchpool;
-$pools[] = $coinpool;
-$pools[] = $dedicated;
+$pools[] = new Pool("FedoraCore", "http://core.fedoracoin.net/", 1, true, "Proportional", "tipsfedora/invisibel", "mpos");
+$pools[] = new Pool("PCFiL", "http://fedora.pcfil.com/", 1, true, "Proportional", "PCFiL", "mpos");
+$pools[] = new Pool("ChickenStrips.net", "http://chickenstrips.net/", 0.5, true, "Proportional", "chisefu", "mpos");
+$pools[] = new Pool("SuchPool.pw", "http://tips.suchpool.pw/", 1, false, "Proportional and VARDIFF", "CryptoSiD", "mpos");
+$pools[] = new Pool("Coin-Pool.org", "http://fedora.coin-pool.org/", 1, true, "Proportional and VARDIFF", "speed-", "mpos");
+$pools[] = new Pool("DedicatedPool.com", "http://tips.dedicatedpool.com/", 2, false, "Proportional?", "binaryclock (#dedicatedpool@freenode)", "mpos");
 
 shuffle($pools);
 header('Content-Type: application/json');
