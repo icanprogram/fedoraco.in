@@ -25,6 +25,7 @@ $pools = array();
 $pools[] = new Pool("PCFiL", "http://fedora.pcfil.com/", 1, true, "Proportional", "PCFiL", "mpos");
 $pools[] = new Pool("ChickenStrips.net", "http://chickenstrips.net/", 0.5, true, "Proportional", "chisefu", "mpos");
 $pools[] = new Pool("Coin-Pool.org", "http://fedora.coin-pool.org/", 1, true, "Proportional and VARDIFF", "speed-", "mpos");
+$pools[] = new Pool("yun235", "fed.yun235.net", 0.5, false, "PPLNS", "bambooo", "mpos");
 
 shuffle($pools);
 header('Content-Type: application/json');
